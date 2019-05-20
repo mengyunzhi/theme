@@ -34,33 +34,24 @@
             </div>
         </div>
 
-        <ul side-navigation class="nav" id="side-menu">
-            <li ui-sref-active="active">
-                <a ui-sref="dashboard"> <span class="nav-label">Dashboard</span> <span
-                    class="label label-success pull-right">v.1</span> </a>
-            </li>
-            <li ui-sref-active="active">
-                <a ui-sref="analytics"> <span class="nav-label">Analytics</span><span
-                    class="label label-warning pull-right">NEW</span> </a>
-            </li>
-            <li ng-class="{active: $state.includes('interface')}">
-                <a href="#"><span class="nav-label">Interface</span><span class="fa arrow"></span> </a>
-                <ul class="nav nav-second-level" ng-class="{in: $state.includes('interface')}">
-                    <li ui-sref-active="active"><a ui-sref="interface.panels">Panels design</a></li>
-                    <li ui-sref-active="active"><a ui-sref="interface.typography">Typography</a></li>
-                    <li ui-sref-active="active"><a ui-sref="interface.buttons">Colors &amp; Buttons</a></li>
-                    <li ui-sref-active="active"><a ui-sref="interface.components">Components</a></li>
-                    <li ui-sref-active="active"><a ui-sref="interface.alerts">Alerts</a></li>
-                    <li ui-sref-active="active"><a ui-sref="interface.modals">Modals</a></li>
-                    <li ui-sref-active="active"><a ui-sref="interface.loading_buttons">Loading buttons</a></li>
-                    <li ui-sref-active="active"><a ui-sref="interface.draggable_panels">Draggable Panels</a></li>
-                    <li ui-sref-active="active"><a ui-sref="interface.code_editor">Code editor</a></li>
-                    <li ui-sref-active="active"><a href="email_template/email_template.html">Email template</a></li>
-                    <li ui-sref-active="active"><a ui-sref="interface.list">List</a></li>
-                    <li ui-sref-active="active"><a ui-sref="interface.tour">Tour</a></li>
-                    <li ui-sref-active="active"><a ui-sref="interface.icons">Icons library</a></li>
+        <ul class="nav" id="side-menu">
+            <li *ngFor="let menu of menus">
+                <a [routerLink]="navigate(menu)">
+                    <span class="nav-label">{{ menu.name }}</span>
+                    <span [innerHTML]="menu.label"></span>
+                </a>
+                <ul class="nav nav-second-level">
+                    <li *ngFor="let child of menu.children">
+                        <a [routerLink]="navigate(child)">
+                            <span class="nav-label">{{ child.name }}</span>
+                            <span [innerHTML]="child.label"></span>
+                        </a>
+                    </li>
                 </ul>
             </li>
+        </ul>
+
+        <ul side-navigation class="nav">
             <li ng-class="{'active': $state.includes('app_views') || $state.includes('blog_details')}">
                 <a href="#"><span class="nav-label">App views</span><span class="fa arrow"></span> </a>
                 <ul class="nav nav-second-level"
