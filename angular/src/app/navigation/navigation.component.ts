@@ -47,4 +47,9 @@ export class NavigationComponent implements OnInit {
      */
     navigate(menu: Menu) {
     }
+
+    active(menu: Menu) {
+        console.log(this.router.url);
+        console.log(menu);
+    }
 }

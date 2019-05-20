@@ -35,7 +35,7 @@
         </div>
 
         <ul class="nav" id="side-menu">
-            <li *ngFor="let menu of menus">
+            <li *ngFor="let menu of menus" [class.active]="active(menu)">
                 <a [routerLink]="navigate(menu)">
                     <span class="nav-label">{{ menu.name }}</span>
                     <span [innerHTML]="menu.label"></span>
