@@ -25,6 +25,16 @@ export class NavigationComponent implements OnInit {
         interfaces.push(new Menu('Panels design', 'interface/panels'));
         interfaces.push(new Menu('Typography', 'interface/typography'));
         interfaces.push(new Menu('Colors & Buttons', 'interface/buttons'));
+        interfaces.push(new Menu('Components', 'interface/components'));
+        interfaces.push(new Menu('Alerts', 'interface/alerts'));
+        interfaces.push(new Menu('Modals', 'interface/modals'));
+        interfaces.push(new Menu('Loading buttons', 'interface/loading_buttons'));
+        interfaces.push(new Menu('Draggable Panels', 'interface/draggable_panels'));
+        interfaces.push(new Menu('Code editor', 'interface/code_editor'));
+        interfaces.push(new Menu('Email template', 'interface/email_template'));
+        interfaces.push(new Menu('List', 'interface/list'));
+        interfaces.push(new Menu('Tour', 'interface/tour'));
+        interfaces.push(new Menu('Icons library', 'interface/icons'));
         this.menus.push(new Menu('Interface', '', interfaces));
     }
 
