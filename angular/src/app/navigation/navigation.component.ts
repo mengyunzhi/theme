@@ -35,7 +35,7 @@ export class NavigationComponent implements OnInit {
         interfaces.push(new Menu('List', 'interface/list'));
         interfaces.push(new Menu('Tour', 'interface/tour'));
         interfaces.push(new Menu('Icons library', 'interface/icons'));
-        this.menus.push(new Menu('Interface', '', interfaces));
+        this.menus.push(new Menu('Interface', 'interface', interfaces));
     }
 
     ngOnInit() {
@@ -48,8 +48,8 @@ export class NavigationComponent implements OnInit {
     navigate(menu: Menu) {
     }
 
-    active(menu: Menu) {
-        console.log(this.router.url);
-        console.log(menu);
+    active(menu: Menu): boolean {
+        const currentUrl = this.router.url;
+        return currentUrl.includes(menu.url);
     }
 }

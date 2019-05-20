@@ -4,12 +4,14 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {FooterComponent} from './footer/footer.component';
 import {NavigationComponent} from './navigation/navigation.component';
+import {DashboardComponent} from './dashboard/dashboard.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         FooterComponent,
-        NavigationComponent
+        NavigationComponent,
+        DashboardComponent
     ],
     imports: [
         BrowserModule,
