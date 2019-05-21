@@ -114,8 +114,10 @@ export class NavigationComponent implements OnInit {
         if (menu.children.length === 0) {
             // noinspection JSIgnoredPromiseFromCall
             this.router.navigateByUrl(menu.url);
-        } else {
+        } else if (!this.currentShowParentMenu) {
             this.currentShowParentMenu = menu;
+        } else if (this.currentShowParentMenu.url === menu.url) {
+            this.currentShowParentMenu = null;
         }
     }
 
@@ -125,7 +127,12 @@ export class NavigationComponent implements OnInit {
      */
     active(menu: Menu): boolean {
         const currentUrl = this.router.url;
-        return currentUrl.includes(menu.url);
+        const currentRoute = currentUrl.includes(menu.url);
+        let currentClick = false;
+        if (this.currentShowParentMenu) {
+            currentClick = this.currentShowParentMenu.url === menu.url;
+        }
+        return currentRoute || currentClick;
     }
 
     /**

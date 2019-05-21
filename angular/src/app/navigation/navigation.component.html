@@ -41,7 +41,7 @@
                     <span [innerHTML]="menu.label"></span>
                 </a>
                 <ul class="nav nav-second-level" *ngIf="showChildren(menu)">
-                    <li *ngFor="let child of menu.children" [class.active]="active(menu)">
+                    <li *ngFor="let child of menu.children" [class.active]="active(child)">
                         <a (click)="navigate(child)">
                             <span class="nav-label">{{ child.name }}</span>
                             <span [innerHTML]="child.label"></span>
