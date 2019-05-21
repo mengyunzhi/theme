@@ -111,7 +111,7 @@ export class NavigationComponent implements OnInit {
      * @param menu 菜单
      */
     navigate(menu: Menu): void {
-        if (menu.children.length === 0) {
+        if (menu.children.length !== 0) {
             // noinspection JSIgnoredPromiseFromCall
             this.router.navigateByUrl(menu.url);
         } else {
@@ -133,6 +133,9 @@ export class NavigationComponent implements OnInit {
      * @param menu 菜单
      */
     showChildren(menu: Menu): boolean {
-        return menu.url === this.currentShowParentMenu.url;
+        if (!this.currentShowParentMenu) {
+            return menu.url === this.currentShowParentMenu.url;
+        }
+        return false;
     }
 }
