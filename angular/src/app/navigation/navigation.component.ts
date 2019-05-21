@@ -9,8 +9,14 @@ import {Menu} from '../target/menu';
 })
 export class NavigationComponent implements OnInit {
 
+    /**
+     * 菜单列表
+     */
     menus: Array<Menu>;
 
+    /**
+     * 当前显示的父菜单
+     */
     private currentShowParentMenu: Menu;
 
     constructor(private router: Router) {
@@ -112,11 +118,14 @@ export class NavigationComponent implements OnInit {
      */
     navigate(menu: Menu): void {
         if (menu.children.length === 0) {
+            // 如果没有子菜单直接跳转
             // noinspection JSIgnoredPromiseFromCall
             this.router.navigateByUrl(menu.url);
         } else if (!this.currentShowParentMenu) {
+            // 如果不存在显示的子菜单，则显示当前子菜单
             this.currentShowParentMenu = menu;
         } else if (this.currentShowParentMenu.url === menu.url) {
+            // 如果已经显示，则隐藏
             this.currentShowParentMenu = null;
         }
     }
@@ -126,12 +135,17 @@ export class NavigationComponent implements OnInit {
      * @param menu 菜单
      */
     active(menu: Menu): boolean {
+        // 获取当前url
         const currentUrl = this.router.url;
+        // 判断是否是当前菜单
         const currentRoute = currentUrl.includes(menu.url);
+        // 初始化点击为false
         let currentClick = false;
+        // 判断是否是点击菜单
         if (this.currentShowParentMenu) {
             currentClick = this.currentShowParentMenu.url === menu.url;
         }
+        // 当前菜单或点击菜单需要active
         return currentRoute || currentClick;
     }
 
