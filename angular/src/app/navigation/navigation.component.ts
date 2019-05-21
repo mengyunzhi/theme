@@ -133,7 +133,7 @@ export class NavigationComponent implements OnInit {
      * @param menu 菜单
      */
     showChildren(menu: Menu): boolean {
-        if (!this.currentShowParentMenu) {
+        if (this.currentShowParentMenu) {
             return menu.url === this.currentShowParentMenu.url;
         }
         return false;

@@ -36,13 +36,13 @@
 
         <ul class="nav" id="side-menu">
             <li *ngFor="let menu of menus" [class.active]="active(menu)">
-                <a [routerLink]="navigate(menu)">
+                <a (click)="navigate(menu)">
                     <span class="nav-label">{{ menu.name }}</span>
                     <span [innerHTML]="menu.label"></span>
                 </a>
                 <ul class="nav nav-second-level" *ngIf="showChildren(menu)">
                     <li *ngFor="let child of menu.children" [class.active]="active(menu)">
-                        <a [routerLink]="navigate(child)">
+                        <a (click)="navigate(child)">
                             <span class="nav-label">{{ child.name }}</span>
                             <span [innerHTML]="child.label"></span>
                         </a>
