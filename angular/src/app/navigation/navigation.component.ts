@@ -11,6 +11,8 @@ export class NavigationComponent implements OnInit {
 
     menus: Array<Menu>;
 
+    private currentShowParentMenu: Menu;
+
     constructor(private router: Router) {
         this.menus = [];
 
@@ -108,11 +110,29 @@ export class NavigationComponent implements OnInit {
      * 路由导航
      * @param menu 菜单
      */
-    navigate(menu: Menu) {
+    navigate(menu: Menu): void {
+        if (menu.children.length === 0) {
+            // noinspection JSIgnoredPromiseFromCall
+            this.router.navigateByUrl(menu.url);
+        } else {
+            this.currentShowParentMenu = menu;
+        }
     }
 
+    /**
+     * 当前菜单是否激活
+     * @param menu 菜单
+     */
     active(menu: Menu): boolean {
         const currentUrl = this.router.url;
         return currentUrl.includes(menu.url);
+    }
+
+    /**
+     * 是否显示子菜单
+     * @param menu 菜单
+     */
+    showChildren(menu: Menu): boolean {
+        return menu.url === this.currentShowParentMenu.url;
     }
 }
