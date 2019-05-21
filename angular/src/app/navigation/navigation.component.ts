@@ -111,7 +111,7 @@ export class NavigationComponent implements OnInit {
      * @param menu 菜单
      */
     navigate(menu: Menu): void {
-        if (menu.children.length !== 0) {
+        if (menu.children.length === 0) {
             // noinspection JSIgnoredPromiseFromCall
             this.router.navigateByUrl(menu.url);
         } else {
